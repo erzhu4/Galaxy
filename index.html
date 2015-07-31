@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Galaxy</title>
+
+
+  </head>
+
+  <body>
+
+    <style>
+    canvas {
+      background: green;
+    }
+      .galaxy-container{
+        position: relative;
+      }
+      .game-over {
+        position: absolute;
+        text-align: center;
+        color: white;
+        font-size: 40px;
+        width: 400px;
+        height: 200px;
+        background: red;
+        top: 200px;
+      }
+
+      .hide {
+        display: none;
+      }
+    </style>
+    <div class="galaxy-container">
+      <div class="score-container">Score: <div class="galaxy-score">0</div></div>
+      <canvas></canvas><br>
+      <button class="start-button">Start</button>
+      <button class="reset">Reset</button>
+      <div class="game-over hide"> GAME OVER!!!!! </div>
+    </div>
+
+
+    <script type="application/javascript" src="lib/jquery.js"></script>
+    <script type="application/javascript" src="lib/util.js"></script>
+    <script type="application/javascript" src="lib/movingObject.js"></script>
+    <script type="application/javascript" src="lib/Enemy.js"></script>
+    <script type="application/javascript" src="lib/ship.js"></script>
+    <script type="application/javascript" src="lib/bullet.js"></script>
+    <script type="application/javascript" src="lib/game.js"></script>
+    <script type="application/javascript" src="lib/gameView.js"></script>
+  	<script type="application/javascript" src="lib/explosion.js"></script>
+    <script type="application/javascript" src="lib/bigexplosion.js"></script>
+  	<script type="application/javascript" src="lib/bigenemy.js"></script>
+    <script type="application/javascript" src="lib/spark.js"></script>
+
+    <script type="application/javascript">
+      (function () {
+          var canvasEl = document.getElementsByTagName("canvas")[0];
+          canvasEl.width = Galaxy.Game.DIM_X;
+          canvasEl.height = Galaxy.Game.DIM_Y;
+          var ctx = canvasEl.getContext("2d");
+          var game = new Galaxy.Game();
+          var view = new Galaxy.GameView(game, ctx)
+        $(".start-button").on("click", function (event) {
+          view.start();
+          $(event.currentTarget).prop("disabled", true);
+        });
+        $(".reset").on("click", function () {
+          view.start();
+        });
+
+      })();
+    </script>
+  </body>
+</html>
